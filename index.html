@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Два пончика и чашка кофе | Спешелти кофейня</title>
+    <!-- Google Fonts: Serif для заголовков, Sans-serif для текста -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --coffee-deep: #3E2723;
+            --beige-cream: #F5F5DC;
+            --accent-pink: #F4ACB7;
+            --accent-terra: #E07A5F;
+            --text-dark: #2D1B18;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--beige-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--coffee-deep);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--coffee-deep);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 2px solid var(--coffee-deep);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--coffee-deep);
+            transform: translateY(-3px);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(245, 245, 220, 0.95);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--coffee-deep);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-terra);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            color: var(--white);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-title .underline {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-terra);
+            margin: 0 auto;
+        }
+
+        /* About Us */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0 var(--accent-pink);
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-img {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .menu-img img {
+            scale: 1.1;
+        }
+
+        .menu-info {
+            padding: 25px;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .menu-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--coffee-deep);
+            font-size: 1.2rem;
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--accent-terra);
+            margin-bottom: 20px;
+        }
+
+        /* Location */
+        .location-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .info-box h3 { margin-bottom: 20px; }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .info-item i { color: var(--accent-terra); }
+
+        .map-placeholder {
+            background: #eee;
+            border-radius: 15px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--coffee-deep);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-terra);
+            border-color: var(--accent-terra);
+        }
+
+        .newsletter input {
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .location-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">ДВА ПОНЧИКА</a>
+                <ul class="nav-links">
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#location">Контакты</a></li>
+                </ul>
+                <a href="#menu" class="btn">Заказать</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Идеальный дуэт для вашего утра</h1>
+                <p>Крафтовые пончики ручной работы и спешелти кофе свежей обжарки. Мы превращаем перекус в искусство.</p>
+                <a href="#menu" class="btn">Смотреть меню</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="about-grid">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Наши пончики">
+            </div>
+            <div class="about-content">
+                <div class="section-title" style="text-align: left;">
+                    <h2>О нашей философии</h2>
+                    <div class="underline" style="margin: 0;"></div>
+                </div>
+                <p>Мы верим, что счастье кроется в простых вещах. «Два пончика и чашка кофе» — это место, где встречаются традиции классической выпечки и современные технологии обжарки кофе.</p>
+                <br>
+                <p>Каждое утро наши кондитеры замешивают тесто по авторскому рецепту, а бариста настраивают помол, чтобы ваша чашка была безупречной.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" style="background-color: rgba(62, 39, 35, 0.03);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Фирменное меню</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="menu-grid">
+                <!-- Card 1 -->
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1533910534207-90f31029a78e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Сет Классика">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Сет «Классика»</h3>
+                        <p>Два классических глазированных пончика и большой капучино. Идеально для начала дня.</p>
+                        <div class="menu-footer">
+                            <span class="price">550 ₽</span>
+                            <button class="btn" style="padding: 8px 20px; font-size: 0.7rem;">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Соленая карамель">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Соленая карамель</h3>
+                        <p>Пончик с домашней карамелью и щепоткой морской соли. Наш абсолютный бестселлер.</p>
+                        <div class="menu-footer">
+                            <span class="price">190 ₽</span>
+                            <button class="btn" style="padding: 8px 20px; font-size: 0.7rem;">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="menu-card">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Фильтр-кофе">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Фильтр-кофе</h3>
+                        <p>Спешелти зерно из Эфиопии. Яркий ягодный профиль и чистое послевкусие.</p>
+                        <div class="menu-footer">
+                            <span class="price">220 ₽</span>
+                            <button class="btn" style="padding: 8px 20px; font-size: 0.7rem;">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-croissant"></i>
+                <h3>Свежая выпечка</h3>
+                <p>Печем новые партии каждые 3 часа, чтобы вы чувствовали аромат тепла.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-mug-hot"></i>
+                <h3>100% Арабика</h3>
+                <p>Только свежая обжарка и зерно с оценкой Q-грейдеров выше 84 баллов.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-heart"></i>
+                <h3>Уютная атмосфера</h3>
+                <p>Идеальное место для работы с ноутбуком или свидания в центре города.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="container">
+        <div class="location-container">
+            <div class="info-box">
+                <h3>Ждем вас в гости</h3>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>ул. Кофейная, д. 12, Москва</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <p>Ежедневно: 08:00 — 22:00</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+7 (999) 000-00-00</p>
+                </div>
+                <br>
+                <a href="#" class="btn">Построить маршрут</a>
+            </div>
+            <div class="map-placeholder">
+                <img src="https://api-maps.yandex.ru/services/constructor/1.0/static/?um=constructor%3A635748805f6b80e663a8a3d3c8f85f543e5c9429c3660a9544463d6b05212345&amp;width=600&amp;height=400&amp;lang=ru_RU" alt="Карта" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-logo">ДВА ПОНЧИКА</span>
+                    <p>Ваша любимая кофейня у дома. Мы делаем мир слаще, одну чашку за раз.</p>
+                </div>
+                <div>
+                    <h4>Навигация</h4>
+                    <ul style="margin-top: 20px;">
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#menu">Меню</a></li>
+                        <li><a href="#location">Контакты</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Соцсети</h4>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="newsletter">
+                    <h4>Спецпредложения</h4>
+                    <form style="margin-top: 20px;">
+                        <input type="email" placeholder="Ваш e-mail">
+                        <button class="btn" style="width: 100%;">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 «Два пончика и чашка кофе». Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Простой скрипт для плавного скролла
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
