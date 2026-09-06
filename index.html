@@ -114,6 +114,16 @@
         .btn .icon { font-size: 1em; }
         .btn-block { width: 100%; }
 
+        /* Кнопки на тёмных фонах (hero / footer): при наведении фон должен оставаться контрастным,
+           чтобы текст не сливался с фоном */
+        .hero .btn:not(.btn-outline):hover, .hero .btn:not(.btn-outline):focus-visible,
+        footer .btn:hover {
+            background-color: var(--accent-terra);
+            color: var(--white);
+            border-color: var(--accent-terra);
+            transform: translateY(-3px);
+        }
+
         /* Header */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
